@@ -49,32 +49,108 @@ function split(str, separator = ' ') {
 // Grunnföll sem skilgreina á
 
 function longest(str) {
-  // Útfæra
+  if (isString(str)){
+    const split = str.split(' ');
+    a = '';
+    for (const word of split)
+      if (word.length > a.length){
+        a = word;
+      }
+    return a;
+  }
+  return null
 }
+console.assert(longest('autumn is cold') === 'autumn', 'longest normal')
+console.assert(longest(1) === null, 'longest number')
+console.assert(longest('') === '', 'longest empty')
 
 function shortest(str) {
-  // Útfæra
+  if (isString(str)){
+    const split = str.split(' ');
+    a = split[0];
+    for (const word of split)
+      if (word.length < a.length){
+        a = word;
+      }
+    return a;
+  }
+  return null
 }
+console.assert(shortest('autumn is cold') === 'is', 'shortest normal')
+console.assert(shortest(1) === null, 'shortest number')
+console.assert(shortest('') === '', 'shortest  empty')
 
 function reverse(str) {
-  // Útfæra
+  if (isString(str)) {
+    const split = str.split('');
+      const reversed = split.reverse()
+      return reversed.join('')
+  }
+  return(null);
 }
+console.assert(reverse('hjörtur') === 'rutröjh', 'reverse string')
+console.assert(reverse(false) === null, 'reverse false')
 
 function palindrome(str) {
-  // Útfæra
+  const split = str;
+  if (split == reverse(split) && split != ''){
+    return true
+  }
+  return false
 }
+console.assert(palindrome('rotator') === true, 'palindrome true')
+console.assert(palindrome('rotating') === false, 'palindrome false')
+console.assert(palindrome('') === false, 'palindrome false')
 
 function vowels(str) {
-  // Útfæra
+  if (isString(str)){
+    const split = str.split('');
+    a = 0;
+    for (const letter of split)
+      for (const vowel of VOWELS)
+        if (letter == vowel){
+          a = ++a;
+        }
+  }
+  return a;
 }
+console.assert(vowels('queueing') === 5, 'vowels word')
+console.assert(vowels('') === 0, 'vowels empty')
+console.assert(vowels(1) === 0, 'vowels not word')
 
 function consonants(str) {
-  // Útfæra
+  if (isString(str)){
+    const split = str.split('');
+    a = 0;
+    for (const letter of split)
+      for (const consonant of CONSONANTS)
+        if (letter == consonant){
+          a = ++a;
+        }
+  }
+  return a;
 }
+console.assert(consonants('queueing') === 3, 'consonants word')
+console.assert(consonants('') === 0, 'consonants empty')
+console.assert(consonants(1) === 0, 'consonants not word')
 
 //------------------------------------------------------------------------------
 // Leiðbeint ferli
 
 function start() {
-  // Útfæra
+  let hasChoice = false;
+  do {
+    const hjörtur = prompt ('input')
+    long = longest(hjörtur)
+    short = shortest(hjörtur)
+    rev = reverse(hjörtur)
+    pal = palindrome(hjörtur)
+    vow = vowels(hjörtur)
+    con = consonants(hjörtur)
+    
+    hasChoice = true
+  } while (hasChoice == false);
+  alert("longest = " + long + "\nshortest = " + short + "\nreversed = " + rev + "\npalindromed = " + pal + "\nnumber of vowels = "
+     + vow + "\nnumber of consonants = " + con)
+    return('')
 }
